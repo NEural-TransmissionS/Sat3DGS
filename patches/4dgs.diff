@@ -1,0 +1,81 @@
+diff --git a/render.py b/render.py
+index 45c7da8..37e8cba 100644
+--- a/render.py
++++ b/render.py
+@@ -73,8 +73,20 @@ def render_set(model_path, name, iteration, views, gaussians, pipeline, backgrou
+             gt_list.append(gt)
+         # if idx >= 10:
+             # break
+-    time2=time()
+-    print("FPS:",(len(views)-1)/(time2-time1))
++
++
++    # Render multiple times to get a better estimate of FPS
++    runtimes = []
++    for _ in range(100):
++        for idx, view in enumerate(views):
++            if idx == 0:time1 = time()
++            rendering = render(view, gaussians, pipeline, background,cam_type=cam_type)["render"]
++        time2=time()
++        runtime=time2-time1
++        runtimes.append(runtime)
++    # get average of 5 smallest runtimes
++    runtimes = np.mean(np.sort(np.array(runtimes))[50:55])
++    print("Average FPS:",(len(views)-1)/runtimes)
+     # print("writing training images.")
+ 
+     multithread_write(gt_list, gts_path)
+diff --git a/scene/__init__.py b/scene/__init__.py
+index 16ab0a8..b0d55e3 100644
+--- a/scene/__init__.py
++++ b/scene/__init__.py
+@@ -47,7 +47,7 @@ class Scene:
+             dataset_type="colmap"
+         elif os.path.exists(os.path.join(args.source_path, "transforms_train.json")):
+             print("Found transforms_train.json file, assuming Blender data set!")
+-            scene_info = sceneLoadTypeCallbacks["Blender"](args.source_path, args.white_background, args.eval, args.extension)
++            scene_info = sceneLoadTypeCallbacks["Blender"](args.source_path, args.white_background, args.eval, "")
+             dataset_type="blender"
+         elif os.path.exists(os.path.join(args.source_path, "poses_bounds.npy")):
+             scene_info = sceneLoadTypeCallbacks["dynerf"](args.source_path, args.white_background, args.eval)
+diff --git a/scene/dataset_readers.py b/scene/dataset_readers.py
+index e1a0722..d525a00 100644
+--- a/scene/dataset_readers.py
++++ b/scene/dataset_readers.py
+@@ -311,7 +311,7 @@ def read_timeline(path):
+         timestamp_mapper[time] = time/max_time_float
+ 
+     return timestamp_mapper, max_time_float
+-def readNerfSyntheticInfo(path, white_background, eval, extension=".png"):
++def readNerfSyntheticInfo(path, white_background, eval, extension=""):
+     timestamp_mapper, max_time = read_timeline(path)
+     print("Reading Training Transforms")
+     train_cam_infos = readCamerasFromTransforms(path, "transforms_train.json", white_background, extension, timestamp_mapper)
+Submodule submodules/depth-diff-gaussian-rasterization contains modified content
+diff --git a/submodules/depth-diff-gaussian-rasterization/setup.py b/submodules/depth-diff-gaussian-rasterization/setup.py
+index bb7220d..f7abd1a 100644
+--- a/submodules/depth-diff-gaussian-rasterization/setup.py
++++ b/submodules/depth-diff-gaussian-rasterization/setup.py
+@@ -26,7 +26,8 @@ setup(
+             "cuda_rasterizer/backward.cu",
+             "rasterize_points.cu",
+             "ext.cpp"],
+-            extra_compile_args={"nvcc": ["-I" + os.path.join(os.path.dirname(os.path.abspath(__file__)), "third_party/glm/")]})
++            #extra_compile_args={"nvcc": ["-I" + os.path.join(os.path.dirname(os.path.abspath(__file__)), "third_party/glm/")]})
++            extra_compile_args={"nvcc": ["-Xcompiler", "-fno-gnu-unique","-I" + os.path.join(os.path.dirname(os.path.abspath(__file__)), "third_party/glm/")]})
+         ],
+     cmdclass={
+         'build_ext': BuildExtension
+diff --git a/utils/scene_utils.py b/utils/scene_utils.py
+index 5c9cf00..1087ef1 100644
+--- a/utils/scene_utils.py
++++ b/utils/scene_utils.py
+@@ -35,7 +35,7 @@ def render_training_image(scene, gaussians, viewpoints, render_func, pipe, backg
+         draw1 = ImageDraw.Draw(image_with_labels)
+ 
+         # 选择字体和字体大小
+-        font = ImageFont.truetype('./utils/TIMES.TTF', size=40)  # 请将路径替换为您选择的字体文件路径
++        font = ImageFont.truetype(os.path.join(os.path.dirname(os.path.realpath(__file__)),'TIMES.TTF'), size=40)  # 请将路径替换为您选择的字体文件路径
+ 
+         # 选择文本颜色
+         text_color = (255, 0, 0)  # 白色
