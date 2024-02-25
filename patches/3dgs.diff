@@ -51,7 +51,7 @@ index 2a6f904..6d2d16c 100644
 -            fovy = focal2fov(fov2focal(fovx, image.size[0]), image.size[1])
 -            FovY = fovy 
 -            FovX = fovx
-+            FovY = focal2fov(fovx, image.size[1]) 
++            FovY = focal2fov(fovx, image.size[1])
 +            FovX = focal2fov(fovx, image.size[0])
  
              cam_infos.append(CameraInfo(uid=idx, R=R, T=T, FovY=FovY, FovX=FovX, image=image,
