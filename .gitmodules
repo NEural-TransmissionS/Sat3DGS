@@ -1,0 +1,12 @@
+[submodule "submodules/dnerf"]
+	path = submodules/dnerf
+	url = https://github.com/albertpumarola/D-NeRF
+[submodule "submodules/instant-nerf"]
+	path = submodules/instant-nerf
+	url = https://github.com/NVlabs/instant-ngp/
+[submodule "submodules/3dgs"]
+	path = submodules/3dgs
+	url = https://github.com/graphdeco-inria/gaussian-splatting
+[submodule "submodules/4dgs"]
+	path = submodules/4dgs
+	url = https://github.com/hustvl/4DGaussians
