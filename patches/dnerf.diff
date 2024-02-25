@@ -1,0 +1,393 @@
+diff --git a/configs/dnerf_Case_I.txt b/configs/dnerf_Case_I.txt
+new file mode 100644
+index 0000000..8e5c3b9
+--- /dev/null
++++ b/configs/dnerf_Case_I.txt
+@@ -0,0 +1,33 @@
++expname = dnerf/Case_I
++basedir = ./models
++datadir = ./data_ns/Case_I
++dataset_type = blender
++
++nerf_type = direct_temporal
++no_batching = True
++not_zero_canonical = False
++use_viewdirs = True
++
++use_viewdirs = True
++white_bkgd = False
++lrate_decay = 500
++
++N_iter = 50000
++N_samples = 64
++N_importance = 128
++N_rand = 500
++testskip = 1
++perturb = 0
++
++precrop_iters = 500
++precrop_iters_time = 10000
++precrop_frac = 0.5
++
++half_res = True
++do_half_precision = False
++
++i_print = 1000
++i_img = 10000
++i_weights = 10000
++i_testset = 10000
++i_video = 10000
+diff --git a/configs/dnerf_Case_II.txt b/configs/dnerf_Case_II.txt
+new file mode 100644
+index 0000000..5548cab
+--- /dev/null
++++ b/configs/dnerf_Case_II.txt
+@@ -0,0 +1,33 @@
++expname = dnerf/Case_II
++basedir = ./models
++datadir = ./data_ns/Case_II
++dataset_type = blender
++
++nerf_type = direct_temporal
++no_batching = True
++not_zero_canonical = False
++use_viewdirs = True
++
++use_viewdirs = True
++white_bkgd = False
++lrate_decay = 500
++
++N_iter = 50000
++N_samples = 64
++N_importance = 128
++N_rand = 500
++testskip = 1
++perturb = 0
++
++precrop_iters = 500
++precrop_iters_time = 10000
++precrop_frac = 0.5
++
++half_res = True
++do_half_precision = False
++
++i_print = 1000
++i_img = 10000
++i_weights = 10000
++i_testset = 10000
++i_video = 10000
+diff --git a/configs/dnerf_Case_III.txt b/configs/dnerf_Case_III.txt
+new file mode 100644
+index 0000000..ea8a3f7
+--- /dev/null
++++ b/configs/dnerf_Case_III.txt
+@@ -0,0 +1,33 @@
++expname = dnerf/Case_III
++basedir = ./models
++datadir = ./data_ns/Case_III
++dataset_type = blender
++
++nerf_type = direct_temporal
++no_batching = True
++not_zero_canonical = False
++use_viewdirs = True
++
++use_viewdirs = True
++white_bkgd = False
++lrate_decay = 500
++
++N_iter = 50000
++N_samples = 64
++N_importance = 128
++N_rand = 500
++testskip = 1
++perturb = 0
++
++precrop_iters = 500
++precrop_iters_time = 10000
++precrop_frac = 0.5
++
++half_res = True
++do_half_precision = False
++
++i_print = 1000
++i_img = 10000
++i_weights = 10000
++i_testset = 10000
++i_video = 10000
+diff --git a/configs/dnerf_Case_IV.txt b/configs/dnerf_Case_IV.txt
+new file mode 100644
+index 0000000..f40dc81
+--- /dev/null
++++ b/configs/dnerf_Case_IV.txt
+@@ -0,0 +1,33 @@
++expname = dnerf/Case_IV
++basedir = ./models
++datadir = ./data_ns/Case_IV
++dataset_type = blender
++
++nerf_type = direct_temporal
++no_batching = True
++not_zero_canonical = False
++use_viewdirs = True
++
++use_viewdirs = True
++white_bkgd = False
++lrate_decay = 500
++
++N_iter = 50000
++N_samples = 64
++N_importance = 128
++N_rand = 500
++testskip = 1
++perturb = 0
++
++precrop_iters = 500
++precrop_iters_time = 10000
++precrop_frac = 0.5
++
++half_res = True
++do_half_precision = False
++
++i_print = 1000
++i_img = 10000
++i_weights = 10000
++i_testset = 10000
++i_video = 10000
+diff --git a/configs/nerf_Case_I.txt b/configs/nerf_Case_I.txt
+new file mode 100644
+index 0000000..dcac1f7
+--- /dev/null
++++ b/configs/nerf_Case_I.txt
+@@ -0,0 +1,33 @@
++expname = nerf/Case_I
++basedir = ./models
++datadir = ./data_ns/Case_I
++dataset_type = blender
++
++nerf_type = original
++no_batching = True
++not_zero_canonical = False
++use_viewdirs = True
++
++use_viewdirs = True
++white_bkgd = False
++lrate_decay = 500
++
++N_iter = 50000
++N_samples = 64
++N_importance = 128
++N_rand = 500
++testskip = 1
++perturb = 0
++
++precrop_iters = 500
++precrop_iters_time = 10000
++precrop_frac = 0.5
++
++half_res = True
++do_half_precision = False
++
++i_print = 1000
++i_img = 10000
++i_weights = 10000
++i_testset = 10000
++i_video = 10000
+diff --git a/configs/nerf_Case_II.txt b/configs/nerf_Case_II.txt
+new file mode 100644
+index 0000000..3417a26
+--- /dev/null
++++ b/configs/nerf_Case_II.txt
+@@ -0,0 +1,33 @@
++expname = nerf/Case_II
++basedir = ./models
++datadir = ./data_ns/Case_II
++dataset_type = blender
++
++nerf_type = original
++no_batching = True
++not_zero_canonical = False
++use_viewdirs = True
++
++use_viewdirs = True
++white_bkgd = False
++lrate_decay = 500
++
++N_iter = 50000
++N_samples = 64
++N_importance = 128
++N_rand = 500
++testskip = 1
++perturb = 0
++
++precrop_iters = 500
++precrop_iters_time = 10000
++precrop_frac = 0.5
++
++half_res = True
++do_half_precision = False
++
++i_print = 1000
++i_img = 10000
++i_weights = 10000
++i_testset = 10000
++i_video = 10000
+diff --git a/configs/nerf_Case_III.txt b/configs/nerf_Case_III.txt
+new file mode 100644
+index 0000000..26e28bf
+--- /dev/null
++++ b/configs/nerf_Case_III.txt
+@@ -0,0 +1,33 @@
++expname = nerf/Case_III
++basedir = ./models
++datadir = ./data_ns/Case_III
++dataset_type = blender
++
++nerf_type = original
++no_batching = True
++not_zero_canonical = False
++use_viewdirs = True
++
++use_viewdirs = True
++white_bkgd = False
++lrate_decay = 500
++
++N_iter = 50000
++N_samples = 64
++N_importance = 128
++N_rand = 500
++testskip = 1
++perturb = 0
++
++precrop_iters = 500
++precrop_iters_time = 10000
++precrop_frac = 0.5
++
++half_res = True
++do_half_precision = False
++
++i_print = 1000
++i_img = 10000
++i_weights = 10000
++i_testset = 10000
++i_video = 10000
+diff --git a/configs/nerf_Case_IV.txt b/configs/nerf_Case_IV.txt
+new file mode 100644
+index 0000000..c136fc4
+--- /dev/null
++++ b/configs/nerf_Case_IV.txt
+@@ -0,0 +1,33 @@
++expname = nerf/Case_IV
++basedir = ./models
++datadir = ./data_ns/Case_IV
++dataset_type = blender
++
++nerf_type = original
++no_batching = True
++not_zero_canonical = False
++use_viewdirs = True
++
++use_viewdirs = True
++white_bkgd = False
++lrate_decay = 500
++
++N_iter = 50000
++N_samples = 64
++N_importance = 128
++N_rand = 500
++testskip = 1
++perturb = 0
++
++precrop_iters = 500
++precrop_iters_time = 10000
++precrop_frac = 0.5
++
++half_res = True
++do_half_precision = False
++
++i_print = 1000
++i_img = 10000
++i_weights = 10000
++i_testset = 10000
++i_video = 10000
+diff --git a/load_blender.py b/load_blender.py
+index f4107f7..7a0b1a1 100644
+--- a/load_blender.py
++++ b/load_blender.py
+@@ -90,13 +90,13 @@ def load_blender_data(basedir, half_res=False, testskip=1):
+         skip = testskip
+             
+         for t, frame in enumerate(meta['frames'][::skip]):
+-            fname = os.path.join(basedir, frame['file_path'] + '.png')
+-            imgs.append(imageio.imread(fname))
++            fname = os.path.join(basedir, frame['file_path'])
++            imgs.append(imageio.imread(fname,pilmode="RGBA"))
+             poses.append(np.array(frame['transform_matrix']))
+             cur_time = frame['time'] if 'time' in frame else float(t) / (len(meta['frames'][::skip])-1)
+             times.append(cur_time)
+ 
+-        assert times[0] == 0, "Time must start at 0"
++        assert times[0] == 0.0, "Time must start at 0"
+ 
+         imgs = (np.array(imgs) / 255.).astype(np.float32)  # keep all 4 channels (RGBA)
+         poses = np.array(poses).astype(np.float32)
+@@ -113,8 +113,8 @@ def load_blender_data(basedir, half_res=False, testskip=1):
+     times = np.concatenate(all_times, 0)
+     
+     H, W = imgs[0].shape[:2]
+-    camera_angle_x = float(meta['camera_angle_x'])
+-    focal = .5 * W / np.tan(.5 * camera_angle_x)
++    # camera_angle_x = float(meta['camera_angle_x'])
++    focal = float(meta['fl_x'])
+ 
+     if os.path.exists(os.path.join(basedir, 'transforms_{}.json'.format('render'))):
+         with open(os.path.join(basedir, 'transforms_{}.json'.format('render')), 'r') as fp:
+@@ -134,7 +134,7 @@ def load_blender_data(basedir, half_res=False, testskip=1):
+ 
+         imgs_half_res = np.zeros((imgs.shape[0], H, W, 4))
+         for i, img in enumerate(imgs):
+-            imgs_half_res[i] = cv2.resize(img, (H, W), interpolation=cv2.INTER_AREA)
++            imgs_half_res[i] = cv2.resize(img, (W, H), interpolation=cv2.INTER_AREA)
+         imgs = imgs_half_res
+         # imgs = tf.image.resize_area(imgs, [400, 400]).numpy()
+ 
+diff --git a/run_dnerf.py b/run_dnerf.py
+index 1e8a292..181e436 100644
+--- a/run_dnerf.py
++++ b/run_dnerf.py
+@@ -1,6 +1,7 @@
+ import os
+ import imageio
+ import time
++from time import time
+ from torch.utils.tensorboard import SummaryWriter
+ from tqdm import tqdm, trange
+ 
+@@ -194,6 +195,19 @@ def render_path(render_poses, render_times, hwf, chunk, render_kwargs, gt_imgs=N
+                 rgb8_gt = to8b(gt_imgs[i])
+                 filename = os.path.join(save_dir_gt, '{:03d}.png'.format(i+i_offset))
+                 imageio.imwrite(filename, rgb8_gt)
++            # Render multiple times to get a better estimate of FPS
++    runtimes = []
++    for _ in range(10):
++        for idx, (c2w, frame_time) in enumerate(zip(render_poses, render_times)):
++            if idx == 0:time1 = time()
++            rendering = render(H, W, focal, chunk=chunk, c2w=c2w[:3,:4], frame_time=frame_time, **render_kwargs)
++        time2=time()
++        runtime=time2-time1
++        runtimes.append(runtime)
++    # get average of 5 smallest runtimes
++    runtimes = np.mean(np.sort(np.array(runtimes))[3:8])
++    print("Average FPS:",(len(render_poses)-1)/runtimes)
++
+ 
+     rgbs = np.stack(rgbs, 0)
+     disps = np.stack(disps, 0)
+@@ -930,6 +944,7 @@ def train():
+                 rgbs, disps = render_path(render_poses, render_times, hwf, args.chunk, render_kwargs_test, savedir=savedir)
+             print('Done, saving', rgbs.shape, disps.shape)
+             moviebase = os.path.join(basedir, expname, '{}_spiral_{:06d}_'.format(expname, i))
++            os.makedirs(moviebase, exist_ok=True)
+             imageio.mimwrite(moviebase + 'rgb.mp4', to8b(rgbs), fps=30, quality=8)
+             imageio.mimwrite(moviebase + 'disp.mp4', to8b(disps / np.max(disps)), fps=30, quality=8)
+ 
