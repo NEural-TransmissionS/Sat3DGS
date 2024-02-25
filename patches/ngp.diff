@@ -1,0 +1,54 @@
+diff --git a/scripts/run.py b/scripts/run.py
+index 2636262..55a2d4b 100755
+--- a/scripts/run.py
++++ b/scripts/run.py
+@@ -16,6 +16,7 @@ import numpy as np
+ 
+ import shutil
+ import time
++from time import time
+ 
+ from common import *
+ from scenes import *
+@@ -281,18 +282,39 @@ if __name__ == "__main__":
+ 		print(args.screenshot_frames)
+ 		for idx in args.screenshot_frames:
+ 			f = ref_transforms["frames"][int(idx)]
+-			cam_matrix = f.get("transform_matrix", f["transform_matrix_start"])
++			cam_matrix = f.get("transform_matrix")
+ 			testbed.set_nerf_camera_matrix(np.matrix(cam_matrix)[:-1,:])
+-			outname = os.path.join(args.screenshot_dir, os.path.basename(f["file_path"]))
++			outname = os.path.join(args.screenshot_dir, "estim", os.path.basename(f["file_path"]))
++			gtname = os.path.join(args.screenshot_dir, "gt", os.path.basename(f["file_path"]))
+ 
+ 			# Some NeRF datasets lack the .png suffix in the dataset metadata
+ 			if not os.path.splitext(outname)[1]:
+ 				outname = outname + ".png"
++			if not os.path.splitext(gtname)[1]:
++				gtname = gtname + ".png"
+ 
+ 			print(f"rendering {outname}")
+ 			image = testbed.render(args.width or int(ref_transforms["w"]), args.height or int(ref_transforms["h"]), args.screenshot_spp, True)
+ 			os.makedirs(os.path.dirname(outname), exist_ok=True)
++			os.makedirs(os.path.dirname(gtname), exist_ok=True)
+ 			write_image(outname, image)
++			# copy ground truth image to same directory
++			shutil.copyfile(f["file_path"].lstrip("../.."), gtname)
++		runtimes = []
++		for _ in range(20):
++			for idx in args.screenshot_frames:
++				if idx == 0:time1 = time()
++				f = ref_transforms["frames"][int(idx)]
++				cam_matrix = f.get("transform_matrix")
++				testbed.set_nerf_camera_matrix(np.matrix(cam_matrix)[:-1,:])
++				testbed.render(args.width or int(ref_transforms["w"]), args.height or int(ref_transforms["h"]), args.screenshot_spp, True)
++			time2=time()
++			runtime=time2-time1
++			runtimes.append(runtime)
++		# get average of 5 smallest runtimes
++		runtimes = np.mean(np.sort(np.array(runtimes))[8:13])
++		print("Average FPS:",(len(args.screenshot_frames)-1)/runtimes)
++
+ 	elif args.screenshot_dir:
+ 		outname = os.path.join(args.screenshot_dir, args.scene + "_" + network_stem)
+ 		print(f"Rendering {outname}.png")
